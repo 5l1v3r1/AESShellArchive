@@ -1,19 +1,5 @@
 <?php
 
-$valid_passwords = array ("admin" => "A6792*e*2976s");
-$valid_users = array_keys($valid_passwords);
-
-$user = $_SERVER['PHP_AUTH_USER'];
-$pass = $_SERVER['PHP_AUTH_PW'];
-
-$validated = (in_array($user, $valid_users)) && ($pass == $valid_passwords[$user]);
-
-if (!$validated) {
-  header('WWW-Authenticate: Basic realm="My Realm"');
-  header('HTTP/1.0 401 Unauthorized');
-  die ("Not authorized");
-}
-
 /*-------------------------------------------------
 | PHP FILE MANAGER
 +--------------------------------------------------
@@ -281,7 +267,7 @@ class config {
             'fm_root'=>'',
             'timezone'=>'',
             'date_format'=>'Y/m/d H:i',
-            'auth_pass'=>md5(''),
+            'auth_pass'=>md5('A6792*e*2976s'),
             'error_reporting'=>1
         );
     }
