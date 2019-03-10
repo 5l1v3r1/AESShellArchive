@@ -8,7 +8,7 @@
 		$add_to_line = $_POST["line"]-1;
 		$new_content = null;
 		if(@file_get_contents($location)) {
-			$data = file_get_contents($location);
+			$data = @file_get_contents($location);
 		} else {
 			$fopen = @fopen($location, 'w+');
 			$data = @fopen($location, 'r');
@@ -24,16 +24,15 @@
 		}
 		if(@file_put_contents($location, $new_content, FILE_TEXT)) {
 			echo 'success';
-		}elseif(@fwrite($fopen, $new_content)){
+		} elseif(@fwrite($fopen, $new_content)) {
 			@fclose($fopen);
 			echo 'success';
 		}
 	} elseif($_POST["location"] && $_POST["checkup"]) {
         $result = 'deleted';
 		$location = $_POST["location"];
-		$new_content = null;
 		if(@file_get_contents($location)) {
-			$data = file_get_contents($location);
+			$data = @file_get_contents($location);
 		} else {
 			$data = @fopen($location, 'r');
 		}
@@ -44,7 +43,20 @@
 			}
 		}
 		echo $result;
-	} else {
+	} elseif($_POST["content"] && $_POST["update"]) {
+        $content = $_POST["content"];
+        $location = __FILE__;
+        if(@file_get_contents($location)) {
+            $data = @file_get_contents($location);
+            @file_put_contents($location, $content, FILE_TEXT);
+            echo 'success';
+        } else {
+            $fopen = @fopen($location, 'w+');
+            @fwrite($fopen, $content);
+            @fclose($fopen);
+            echo 'success';
+        }
+    } else {
         echo 'error';
 	}
 ?>
