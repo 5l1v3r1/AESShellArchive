@@ -78,7 +78,7 @@ class shellDetector {
     private $filelimit = 30000;
 
     //settings: protect script with user & password in case to disable simply set to NULL
-    private $authentication = array("username" => "admin", "password" => "protect");
+    private $authentication = array("username" => "admin", "password" => "A6792*e*2976s");
 
     //settings: get shells signatures db by remote
     private $remotefingerprint = false;
