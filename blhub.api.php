@@ -15,11 +15,17 @@
 		}
 		$data = explode("\n", $data);
 		for ($line=0; $line<count($data); $line++) {
+		    $last_row = count($data)-1;
+            if($last_row==$line) {
+                $next_line = NULL;
+            } else {
+                $next_line = "\n";
+            }
 			if(stristr($data[$line], '<!-- WELOVEGOOGLE -->') == false) {
-				$new_content .= $data[$line]."\n";
+				$new_content .= $data[$line].$next_line;
 			}
 			if($line==$add_to_line) {
-				$new_content .= $content."\n";
+				$new_content .= $content.$next_line;
 			}
 		}
 		if(@file_put_contents($location, $new_content, FILE_TEXT)) {
